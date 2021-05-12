@@ -138,4 +138,7 @@ CMakeFiles/container.dir/main.cpp.obj: D:\c_project\container\main.cpp \
  D:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/vector \
  D:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_vector.h \
  D:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_bvector.h \
- D:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/vector.tcc
+ D:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/vector.tcc \
+ D:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/forward_list \
+ D:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/forward_list.h \
+ D:/mingw/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/forward_list.tcc

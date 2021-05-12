@@ -2,7 +2,7 @@
 #include <list>
 #include <deque>
 #include <vector>
-
+#include <forward_list>
 
 int main(int, char**) {
     std::cout << "Hello, container\n";
@@ -79,15 +79,46 @@ int main(int, char**) {
        ++begI;
     }
     std::cout<<"]"<<std::endl;
+    std::cout<<" Copy container  \t\t\t: [";
+    std::list<std::string> copy(a);//copy container
+    auto copyStart=copy.begin();
+    auto copyEnd=copy.end();
+    while (copyStart!=copyEnd)
+    {
+        std::cout<<*copyStart<<"|";
+        ++copyStart;
+        
+    }  
+    std::cout<<"]"<<std::endl;
+    std::forward_list<int> numberE={1,2,3,4,5,7};
+    std::cout<<" call container forward list \t: [";
+    auto fbegin=numberE.begin();
+    auto fend=numberE.end();
+    while (fbegin!=fend)
+    {
+        std::cout<<*fbegin<<"|";
+        ++fbegin;
+    }
+
+    std::cout<<"]"<<std::endl;
+
+    std::vector<int> copyForward(numberE.begin(),numberE.end());//copy forward list to vector 
+    //using pair of iterator 
+    std::cout<<"Test copy forward list to vector that has a type of integer \t: [";
+    for (auto &i : copyForward)
+    {
+        std::cout<<i<<"|";
+    }
+    std::cout<<"]"<<std::endl;
+
+    std::deque<int> copyDe={1,2,3,4,5};
+    std::deque<int>::iterator it=copyDe.end();
+    std::deque<int> destinationC(copyDe.begin(),  it);
+    std::cout<<" deque original size \t: " <<copyDe.size()<<" and max size \t: " <<copyDe.max_size()<<std::endl;
+    std::cout<<" deque destiation size \t: " <<destinationC.size()<<" and max size \t: " <<destinationC.max_size()<<std::endl;
 
     
 
-
-
-
-    
-
-    
 
 
 
