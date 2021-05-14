@@ -543,9 +543,52 @@ int main(int, char**) {
     }
     std::cout<<"]"<<std::endl;    
 
+    std::cout<<"Resize a container "<<std::endl;
+    std::list<int> containRes(10);
+    std::cout<<"Current Size \t: " <<containRes.size()<<std::endl;
+    containRes.resize(100);
+    std::cout<<"After resize \t: " <<containRes.size()<<std::endl;
     
-        
+    std::cout<<"Container ! Size Management "<<std::endl;
+    std::vector<int> emptySi;
+    std::cout<<"Vector element \t\t:" <<emptySi.size()<<std::endl;
+    std::cout<<"Vector Capacity \t:"<<emptySi.capacity()<<std::endl; // Returns the total number of elements that the %vector can
+    //hold before needing to allocate more memory.
+    for(std::vector<int>::size_type ix=0;ix!=24;++ix){
+        emptySi.push_back(ix);
 
+    }    
+    std::cout<<"Vector element \t\t:" <<emptySi.size()<<std::endl;
+    std::cout<<"Vector Capacity \t:"<<emptySi.capacity()<<std::endl; // Returns the total number of elements that the %vector can
+    //hold before needing to allocate more memory.
+    std::cout<<"reserve memory size"<<std::endl;
+    emptySi.reserve(50);
+    std::cout<<"Vector element \t\t:" <<emptySi.size()<<std::endl;
+    std::cout<<"After reserve , Vector Capacity \t:"<<emptySi.capacity()<<std::endl; // Returns the total number of elements that the %vector can
+    std::cout<<"After reserve , we might use the capacity"<<std::endl;
+    while (emptySi.size()!=emptySi.capacity())
+    {
+        emptySi.push_back(0);
+    }
+    std::cout<<"element of vector \t: " <<emptySi.size()<<std::endl;
+    std::cout<<"capacity of vector \t: " <<emptySi.capacity()<<std::endl;
+    std::cout<<"test adding new element"<<std::endl;
+    emptySi.push_back(900);
+    std::cout<<"element of vector \t: " <<emptySi.size()<<std::endl;
+    std::cout<<"capacity of vector \t: " <<emptySi.capacity() <<"(\t2 times greater than before)"<<std::endl;
+    std::cout<<"Use shrink_to_fit.... test add new element"<<std::endl;
+    emptySi.push_back(87);
+    std::cout<<"element of vector \t: " <<emptySi.size()<<std::endl;
+    emptySi.shrink_to_fit();//reduce capacity 
+    std::cout<<"capacity of vector \t: " <<emptySi.capacity() <<"(\tfix size)"<<std::endl;
+
+
+
+
+
+
+
+    
     /*std::cout<<"test eigen here "<<std::endl;
     Eigen::Matrix<float,2,2> nameMatr;
     nameMatr<<1,2,3,4;
