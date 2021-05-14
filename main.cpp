@@ -582,6 +582,8 @@ int main(int, char**) {
     emptySi.shrink_to_fit();//reduce capacity 
     std::cout<<"capacity of vector \t: " <<emptySi.capacity() <<"(\tfix size)"<<std::endl;
 
+    
+
 
 
 
