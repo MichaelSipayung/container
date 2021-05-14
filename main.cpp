@@ -6,6 +6,12 @@
 #include <array>
 #include <ctime>
 
+struct salesData{
+    std::string nameSales;
+    int age;
+    int address;
+};
+
 
 int main(int, char**) {
     time_t rawtime;
@@ -308,11 +314,12 @@ int main(int, char**) {
     std::cout<<"warning, press ctrl+z to stop input"<<std::endl;
     std::cout<<"similiar operation to push_front() \t: [ ";
     std::string wordIn;
+    /*
     while(std::cin>>wordIn){
         iterCoun=nameCountry.insert(iterCoun,wordIn);
     }
     std::cout<<"]"<<std::endl;
-
+*/
     std::cout<<"reading data \t: [";
     for (auto &i : nameCountry)
     {
@@ -320,7 +327,56 @@ int main(int, char**) {
     }
     
     std::cout<<"]"<<std::endl; 
+    /*std::list<std::string> emplaceInsert;
+    emplaceInsert.emplace_back("michael");
+    emplaceInsert.emplace_back("sipayung");
+    std::cout<<"using emplace back \t:[";
+    for (auto &i : emplaceInsert)
+    {
+        std::cout<<i<<"|";
+    }
+    std::cout<<"]"<<std::endl;
+*/
+    std::cout<<"\ntry push front"<<std::endl;
+    std::list<int> pushFront={1,2,3,4};
+    std::cout<<"Orignal vector \t: [";
+    for (auto &i : pushFront)
+    {
+        std::cout<<i<<"|";
+    }
+    std::cout<<"]"<<std::endl;
+    pushFront.push_front(12);
+    pushFront.push_front(100);
+    std::cout<<"After Push_Front vector \t: [";
+    for (auto &i : pushFront)
+    {
+        std::cout<<i<<"|";
+    }
+    std::cout<<"]"<<std::endl;
+    //list emmpalce 
+    std::list<std::pair<int,char>> myList;
+    myList.emplace(myList.begin(),100,'x');
+    myList.emplace(myList.begin(),200,'y');
+    std::cout<<"Using Emplace"<<std::endl;
+    std::cout<<"My List contain  \t: [";
+    for (auto &i : myList)
+    {
+        std::cout<<"("<<i.first<<i.second<<")";
+    }
+    std::cout<<"]"<<std::endl;
+
+    //test std::pair
+    std::cout<<"Struct holding two objects of arbitrary type"<<std::endl;
+    std::pair<int,std::string> myPair;
+    myPair.first=1;
+    myPair.second="Michael";
+    std::cout<<"1.Test std::pair \t:" << "( " <<myPair.first<<","<<myPair.second<<" )"<<std::endl;
+    myPair.first=2;
+    myPair.second="John";
+    std::cout<<"1.Test std::pair \t:" << "( " <<myPair.first<<","<<myPair.second<<" )"<<std::endl;
 
 
+    
 
-}
+
+}   
