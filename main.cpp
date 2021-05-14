@@ -5,13 +5,31 @@
 #include <forward_list>
 #include <array>
 #include <ctime>
+#include "Eigen/Dense"
+
 
 struct salesData{
     std::string nameSales;
     int age;
     int address;
+
 };
 
+class salesNew
+{
+    
+private:
+    std::string salesName;
+    int age;
+
+    /* data */
+public:
+    salesNew(std::string salesNames,int salesAge){
+        salesName=salesNames;
+        age=salesAge;
+    }
+    ~salesNew();
+};
 
 int main(int, char**) {
     time_t rawtime;
@@ -374,9 +392,167 @@ int main(int, char**) {
     myPair.first=2;
     myPair.second="John";
     std::cout<<"1.Test std::pair \t:" << "( " <<myPair.first<<","<<myPair.second<<" )"<<std::endl;
+    
+    std::cout<<"Apply Emplace Back to vector \t:[";
+    std::list<int> emplaceTest;
+    emplaceTest.emplace_back(12);
+    emplaceTest.emplace_back(18);
+    emplaceTest.emplace_back(98);
+    emplaceTest.emplace_front(9098);
 
+    for (auto &i : emplaceTest)
+    {
+        std::cout<<i<<"|";
+    }
+    std::cout<<"]"<<std::endl;
+
+    std::cout<<"Accessing elements"<<std::endl;
+    auto firstEl=emplaceTest.front();
+    auto endEl=emplaceTest.back();// exception, forward_list  has no member function back
+
+    std::cout<<"View First Element \t: [";
+    std::cout<<firstEl<<"]"<<std::endl;
+    std::cout<<"View last Element \t: [";
+    std::cout<<endEl<<"]"<<std::endl;
+    std::vector<int> showVl={1,2,3,5,6,7};
+    std::cout<<"Show vector \t:[";
+    for (auto &i : showVl)
+    {
+        std::cout<<i<<"|";
+    }
+    std::cout<<"]"<<std::endl;
+    if(!showVl.empty()){
+        std::cout<<"Show value using member function of vector at(4)\t:" <<showVl.at(4)<<std::endl;
+        showVl.front()=43;
+        std::cout<<"After change the first element \t: ["<<showVl.front()<<"]"<<std::endl;
+        //for non const 
+        auto &aNonCons= showVl.back();
+        aNonCons=100;
+        std::cout<<"After change the last element\t:["<<showVl.back()<<" ]"<<std::endl;
+        std::cout<<"Show all element \t:[";
+        for (auto &i : showVl)
+        {
+            std::cout<<i<<"|";
+        }
+        std::cout<<"]"<<std::endl;
+        
+    }
+    else{
+        std::cout<<"Stop element in vector, currently is empty"<<std::endl;
+    }
+    //note : using at(n) to avoid runtime error rather than use subscript operator
+    //ada 100% peluang untuk bisa ! tetap maju dan semangat 
+    if(!showVl.empty()){
+        std::cout<<"Erase last element ini vector "<<std::endl;
+        showVl.pop_back();
+        std::cout<<"After remove \t:[";
+        for (auto &i : showVl)
+        {
+            std::cout<<i<<"|";
+        }
+        std::cout<<"]"<<std::endl;
+        
+    }
+    std::list<int> listBook;
+    listBook.push_back(12);
+    listBook.push_back(13);
+    listBook.push_back(19);
+    if(!listBook.empty()){
+        std::cout<<"Erase last element ini list "<<std::endl;
+        listBook.pop_back();
+        std::cout<<"After remove \t:[";
+        for (auto &i : listBook)
+        {
+            std::cout<<i<<"|";
+        }
+        std::cout<<"]"<<std::endl;
+        std::cout<<"Erase first element in a list \t:[";
+        listBook.pop_front();
+        for (auto &i : listBook)
+        {
+            std::cout<<i<<"|";
+        }
+        std::cout<<"]"<<std::endl;
+        
+        
+    }
+
+    std::cout<<"Using erase to remove an element by iterator"<<std::endl;
+    std::vector<int> smallNum={1,2,3,4,5,6,7,8,9};
+    std::cout<<"Original value\t:[";
+    for (auto &i : smallNum)
+    {
+        std::cout<<i<<"|";
+    }
+    std::cout<<"]"<<std::endl;
 
     
+    auto varIter=smallNum.begin();
+
+    while (varIter!=smallNum.end())
+    {
+        if(*varIter%2){//mod 2 return true if number mod 2 !=0
+            varIter=smallNum.erase(varIter);
+        }
+        else{
+            ++varIter;
+        }
+    }
+    std::cout<<"After delete the odd elements \t:[";
+    for (auto &i : smallNum)
+    {
+        std::cout<<i<<"|";
+    }
+    std::cout<<"]"<<std::endl;
+    std::cout<<"Delete all elemet using clear or erase (iterator f, iterator end)\t:[";
+    auto eqClear= smallNum.begin();
+    auto eqClearE= smallNum.end();
+    smallNum.erase(eqClear,eqClearE); //equals to clear();
+    for (auto &i : smallNum)
+    {
+        std::cout<<i<<"|";
+    }
+    std::cout<<"]"<<std::endl;
+
+    std::cout<<"Special technequie for reading and erasing a forward list"<<std::endl;
+    std::forward_list<int> listFor={1,2,3,4,5,6,7,8,9};
+    std::cout<<"Before erase forward List \t: [";
+    for (auto &i : listFor)
+    {
+        std::cout<<i<<"|";
+    }
+    std::cout<<"]"<<std::endl;
+
+    auto prevL=listFor.before_begin();//point to before the first element
+    auto curr=listFor.begin();
+    while (curr!=listFor.end())
+    {
+        if(*curr%2){
+            curr=listFor.erase_after(prevL);
+        }
+        else{  //nothing erase operation here
+            prevL=curr;//move both iterator 
+            ++curr; //move the iterator one before the next  element 
+        }
+    }
+    
+    std::cout<<"Show forward list after erase odd elements\t:[";
+    for (auto &i : listFor)
+    {
+        std::cout<<i<<"|";
+    }
+    std::cout<<"]"<<std::endl;    
+
+    
+        
+
+    /*std::cout<<"test eigen here "<<std::endl;
+    Eigen::Matrix<float,2,2> nameMatr;
+    nameMatr<<1,2,3,4;
+    std::cout<<"Matrix A\t:\n";
+    std::cout<<nameMatr<<std::endl;
+    */
+
 
 
 }   
